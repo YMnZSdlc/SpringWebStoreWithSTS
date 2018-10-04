@@ -2,19 +2,20 @@ package pl.sda.webstore.domain.repository.impl;
 
 import org.springframework.stereotype.Repository;
 import pl.sda.webstore.domain.Product;
+import pl.sda.webstore.domain.repository.ProductRepository;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class InMemoryProductRepository {
+public class InMemoryProductRepository implements ProductRepository {
 
-    private List<Product> listOfProducts = new ArrayList<>();
+    private List<Product> listOfProducts = new ArrayList<Product>();
 
     public InMemoryProductRepository() {
         Product iphone = new Product("P1234", "iPhone 5s", new BigDecimal(500));
-        iphone.setDescription("Apple iPhone 5s, smartfon z 4-calowym ekranem o rozdzielczości 6401136 i " +
+        iphone.setDescription("Apple iPhone 5s, smartfon z 4-calowym ekranem o rozdzielczości 640x1136 i " +
                 "8-megapikselowym aparatem");
         iphone.setCategory("Smartfon");
         iphone.setManufacturer("Apple");
@@ -47,4 +48,8 @@ public class InMemoryProductRepository {
     }
 
 
+    @Override
+    public List<Product> getAllProducts() {
+        return listOfProducts;
+    }
 }

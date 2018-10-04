@@ -1,24 +1,21 @@
 package pl.sda.webstore.controller;
 
-import java.math.BigDecimal;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import pl.sda.webstore.domain.Product;
+import pl.sda.webstore.domain.repository.ProductRepository;
 
 @Controller
 public class ProductController {
 
+    @Autowired
+    private ProductRepository productRepository;
+
     @RequestMapping("/prod")
     public String list(Model model) {
-        Product xiaomiBetter = new Product("X1234", "Redmi 4Pro", new BigDecimal(500));
-        xiaomiBetter.setDescription("Xiaomi Redmi 4Pro. Ekran 5 cali FULLHD. i takie tam. Xiaomi lepszy.");
-        xiaomiBetter.setCategory("Smart Phone");
-        xiaomiBetter.setManufacturer("Xiaomi");
-        xiaomiBetter.setUnitsInStock(667);
-        model.addAttribute("product", xiaomiBetter);
+        model.addAttribute("productsList", productRepository.getAllProducts());
         return "products";
     }
 
