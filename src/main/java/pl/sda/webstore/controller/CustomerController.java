@@ -12,7 +12,7 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-    @RequestMapping("/cust")
+    @RequestMapping("/customers")
     public String listOfCustomers (Model model){
         model.addAttribute("customerList", customerService.getAllCustomers());
         return "customers";

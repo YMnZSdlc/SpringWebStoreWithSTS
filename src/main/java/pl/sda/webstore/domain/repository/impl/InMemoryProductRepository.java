@@ -10,7 +10,7 @@ import java.util.*;
 @Repository
 public class InMemoryProductRepository implements ProductRepository {
 
-    private List<Product> listOfProducts = new ArrayList<Product>();
+    private List<Product> listOfProducts = new ArrayList<>();
 
     public InMemoryProductRepository() {
         Product iphone = new Product("P1234", "iPhone 5s", new BigDecimal(500));
@@ -105,13 +105,13 @@ public class InMemoryProductRepository implements ProductRepository {
         for (Product product : listOfProducts) {
             if (product != null
                     && product.getProductId() != null
-                    && product.getProductId().equals(productId)) {
+                    && product.getProductId().equalsIgnoreCase(productId)) {
                 productById = product;
                 break;
             }
-            if (productById == null) {
-                throw new IllegalArgumentException("Brak produktu o wskazanym id: " + productId);
-            }
+        }
+        if (productById == null) {
+            throw new IllegalArgumentException("Brak produktu o wskazanym id: " + productId);
         }
         return productById;
     }
