@@ -7,6 +7,8 @@ import pl.sda.webstore.domain.repository.ProductRepository;
 import pl.sda.webstore.service.ProductService;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -22,5 +24,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getProductsByCategory(String category) {
         return productRepository.getProductsByCategory(category);
+    }
+
+    @Override
+    public Set<Product> getProductsByFilter(Map<String, List<String>> filterParams) {
+        return productRepository.getProductByFilter(filterParams);
     }
 }
