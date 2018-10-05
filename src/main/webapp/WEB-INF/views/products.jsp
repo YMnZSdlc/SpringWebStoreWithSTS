@@ -1,6 +1,6 @@
 <%-- <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%> --%>
-<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> -->
 <html>
@@ -24,17 +24,17 @@
 <section class="container">
     <div class="row">
         <c:forEach items="${productsList}" var="product">
-        <div class="col-sm-6 col-md-3" style="padding-bottom: 2px">
-            <div class="tumbnail">
-                <div class="caption">
-                    <h3>Nazwa: ${product.name}</h3>
-                    <h5>Typ: ${product.category}</h5>
-                    <p>Opis: ${product.description}</p>
-                    <p>Cena: ${product.unitPrice}PLN</p>
-                    <p>Liczba sztuk: ${product.unitsInStock}</p>
+            <div class="col-sm-6 col-md-3" style="padding-bottom: 2px">
+                <div class="tumbnail">
+                    <div class="caption">
+                        <h3>Nazwa: ${product.name}</h3>
+                        <h5>Typ: ${product.category}</h5>
+                        <p>Opis: ${product.description}</p>
+                        <p>Cena: ${product.unitPrice}PLN</p>
+                        <p>Liczba sztuk: ${product.unitsInStock}</p>
+                    </div>
                 </div>
             </div>
-        </div>
         </c:forEach>
     </div>
 </section>
