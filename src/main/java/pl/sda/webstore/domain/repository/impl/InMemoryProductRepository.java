@@ -41,10 +41,18 @@ public class InMemoryProductRepository implements ProductRepository {
         xiaomiBetter.setManufacturer("Xiaomi");
         xiaomiBetter.setUnitsInStock(100);
 
+        Product xiaomiRedmi5 = new Product("X1235", "Redmi 5", new BigDecimal(400));
+        xiaomiRedmi5.setDescription("Xiaomi Redmi 5. Ekran 5,5 cali 1440x720. Patrzę na Was, biednych, przerażonych, " +
+                "przyciskającyck telefony do ładowarki. Xiaomi lepszy.");
+        xiaomiRedmi5.setCategory("Smartfon");
+        xiaomiRedmi5.setManufacturer("Xiaomi");
+        xiaomiRedmi5.setUnitsInStock(200);
+
         listOfProducts.add(iphone);
         listOfProducts.add(laptop_dell);
         listOfProducts.add(tablet_Nexus);
         listOfProducts.add(xiaomiBetter);
+        listOfProducts.add(xiaomiRedmi5);
     }
 
 
@@ -52,6 +60,19 @@ public class InMemoryProductRepository implements ProductRepository {
     public List<Product> getAllProducts() {
         return listOfProducts;
     }
+
+    @Override
+    public List<Product> getProductsByCategory(String category) {
+        List<Product> productsByCategory = new ArrayList<>();
+
+        for (Product product : listOfProducts) {
+            if (category.equalsIgnoreCase(product.getCategory())) {
+                productsByCategory.add(product);
+            }
+        }
+        return productsByCategory;
+    }
+
 
     @Override
     public Product getProductById(String productId) {
@@ -63,7 +84,7 @@ public class InMemoryProductRepository implements ProductRepository {
                 productById = product;
                 break;
             }
-            if(productById == null){
+            if (productById == null) {
                 throw new IllegalArgumentException("Brak produktu o wskazanym id: " + productId);
             }
         }
