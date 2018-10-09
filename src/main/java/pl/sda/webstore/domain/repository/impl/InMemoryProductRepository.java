@@ -6,6 +6,7 @@ import pl.sda.webstore.domain.repository.ProductRepository;
 
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Repository
 public class InMemoryProductRepository implements ProductRepository {
@@ -114,5 +115,17 @@ public class InMemoryProductRepository implements ProductRepository {
             throw new IllegalArgumentException("Brak produktu o wskazanym id: " + productId);
         }
         return productById;
+    }
+
+    @Override
+    public List<Product> getProductByManufacturer(final String manufacturer) {
+        List<Product> productByManufacurer = new ArrayList<>();
+
+        for (Product product : listOfProducts) {
+            if (manufacturer.equals(product.getManufacturer())){
+                productByManufacurer.add(product);
+            }
+        }
+        return productByManufacurer;
     }
 }

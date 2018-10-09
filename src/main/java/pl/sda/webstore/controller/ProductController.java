@@ -52,5 +52,13 @@ public class ProductController {
         return "product";
     }
 
+    @RequestMapping("/{category}/{ByPrice}")
+    public String filterProducts (Model model, @PathVariable ("category") String category,
+                           @MatrixVariable(pathVar = "ByPrice") Map<String, List<String>> priceLimit,
+                           @RequestParam ("manufacturer") String manufacturer){
+
+        return "products";
+    }
+
 
 }
