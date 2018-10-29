@@ -6,7 +6,6 @@ import pl.sda.webstore.domain.repository.ProductRepository;
 
 import java.math.BigDecimal;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Repository
 public class InMemoryProductRepository implements ProductRepository {
@@ -74,17 +73,54 @@ public class InMemoryProductRepository implements ProductRepository {
     }
 
     @Override
+    public List<Product> getProductByManufacturer(String manufacturer) {
+        List<Product> productByManufacturer = new ArrayList<>();
+
+        for (Product product : listOfProducts) {
+            if (manufacturer.equalsIgnoreCase(product.getManufacturer())) {
+                productByManufacturer.add(product);
+            }
+        }
+        return productByManufacturer;
+    }
+
+    @Override
+    public Set<Product> getProductByPrice(Map<String, List<String>> priceParams) {
+        Set<Product> productsByPrice = new HashSet<>();
+        Set<String> priceCriterias = priceParams.keySet();
+
+        if (priceCriterias.contains("price")) {
+            if (priceCriterias.contains("low") && priceCriterias.contains("high")) {
+                BigDecimal low = new BigDecimal(priceParams.get("low").get(0));
+                BigDecimal high = new BigDecimal(priceParams.get("high").get(0));
+
+                for (Product product : listOfProducts) {
+                    if (product.getUnitPrice().compareTo(low) >= 0 && product.getUnitPrice().compareTo(high) <= 0) {
+                        productsByPrice.add(product);
+                    }
+                }
+            }
+        }
+        return productsByPrice;
+    }
+
+    @Override
+    public void addProduct(Product product) {
+        listOfProducts.add(product);
+    }
+
+    @Override
     public Set<Product> getProductByFilter(Map<String, List<String>> filterParams) {
         Set<Product> productsByBrand = new HashSet<>();
         Set<Product> productsByCategory = new HashSet<>();
         Set<String> criterias = filterParams.keySet();
+
         if (criterias.contains("brand")) {
             for (String brandName : filterParams.get("brand")) {
                 for (Product product : listOfProducts) {
                     if (brandName.equalsIgnoreCase(product.getManufacturer())) {
                         productsByBrand.add(product);
                     }
-
                 }
             }
         }
@@ -115,17 +151,5 @@ public class InMemoryProductRepository implements ProductRepository {
             throw new IllegalArgumentException("Brak produktu o wskazanym id: " + productId);
         }
         return productById;
-    }
-
-    @Override
-    public List<Product> getProductByManufacturer(final String manufacturer) {
-        List<Product> productByManufacurer = new ArrayList<>();
-
-        for (Product product : listOfProducts) {
-            if (manufacturer.equals(product.getManufacturer())){
-                productByManufacurer.add(product);
-            }
-        }
-        return productByManufacurer;
     }
 }

@@ -18,4 +18,8 @@ public interface ProductRepository {
 
     List<Product> getProductByManufacturer (String manufacturer);
 
+    Set<Product> getProductByPrice (Map<String, List<String>> priceParams);
+
+    void addProduct(Product product);
+
 }

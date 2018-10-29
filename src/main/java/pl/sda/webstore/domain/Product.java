@@ -11,7 +11,7 @@ public class Product {
 	private String manufacturer;
 	private String category;
 	private long unitsInStock;
-	private long unitsInOrdet;
+	private long unitsInOrder;
 	private boolean discontinued;
 	private String condition;
 
@@ -81,12 +81,12 @@ public class Product {
 		this.unitsInStock = unitsInStock;
 	}
 
-	public long getUnitsInOrdet() {
-		return unitsInOrdet;
+	public long getUnitsInOrder() {
+		return unitsInOrder;
 	}
 
-	public void setUnitsInOrdet(long unitsInOrdet) {
-		this.unitsInOrdet = unitsInOrdet;
+	public void setUnitsInOrder(long unitsInOrder) {
+		this.unitsInOrder = unitsInOrder;
 	}
 
 	public boolean isDiscontinued() {
