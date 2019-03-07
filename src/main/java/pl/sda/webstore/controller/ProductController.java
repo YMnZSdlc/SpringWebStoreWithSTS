@@ -3,15 +3,13 @@ package pl.sda.webstore.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import pl.sda.webstore.domain.Product;
 import pl.sda.webstore.service.ProductService;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 @RequestMapping("/products")
@@ -57,12 +55,12 @@ public class ProductController {
                                  @MatrixVariable(pathVar = "ByPrice") Map<String, List<String>> priceLimit,
                                  @RequestParam("manufacturer") String manufacturer) {
 
-        Set<Product> productsSet = new HashSet<>();
-        productsSet.addAll(productService.getProductsByCategory(category));
-        productsSet.retainAll(productService.getProductsByPrise(priceLimit));
-        productsSet.retainAll(productService.getProductByManufacturer(manufacturer));
+        List<Product> productsList = new ArrayList<>();
+        productsList.addAll(productService.getProductsByCategory(category));
+        productsList.addAll(productService.getProductByManufacturer(manufacturer));
+        productsList.addAll(productService.getProductsByPrise(priceLimit));
 
-        model.addAttribute("productsList", productsSet);
+        model.addAttribute("productsList", productsList);
         return "products";
     }
 
@@ -78,6 +76,8 @@ public class ProductController {
         productService.addProduct(productToBeAdded);
         return "redirect:/products";
     }
+
+
 
 
 }

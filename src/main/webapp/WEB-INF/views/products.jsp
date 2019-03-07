@@ -40,6 +40,7 @@
                                 <span class="glyphicon-info-sign glyphicon"/>Szczegóły</span>
                             </a>
                         </p>
+                        <p>ID: ${product.productId}</p>
                     </div>
                 </div>
             </div>
