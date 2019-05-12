@@ -20,6 +20,9 @@
 
 <section>
     <div class="jumbotron">
+        <a href="<c:url value="/j_spring_security_logout" />" class="btn btn-danger btn-mini pull-right">
+            Wyloguj
+        </a>
         <div class="container">
             <h1>Produkty</h1>
             <p>Dodaj produkty</p>
