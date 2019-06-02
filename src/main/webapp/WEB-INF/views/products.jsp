@@ -28,6 +28,10 @@
         <c:forEach items="${productsList}" var="product">
             <div class="col-sm-6 col-md-3" style="padding-bottom: 2px">
                 <div class="tumbnail">
+
+                    <img src="<c:url value="/resource/images/${product.productId}.png"></c:url>" alt="image"
+                         style="width:100%"/>
+
                     <div class="caption">
                         <h3>Nazwa: ${product.name}</h3>
                         <h5>Typ: ${product.category}</h5>
