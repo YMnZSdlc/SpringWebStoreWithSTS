@@ -51,5 +51,14 @@
         </c:forEach>
     </div>
 </section>
+<section>
+    <div class="jumbotron">
+        <div class="container">
+            <p><a href="<spring:url value="/products/add" />">
+                Dodaj
+            </a></p>
+        </div>
+    </div>
+</section>
 </body>
 </html>

@@ -108,12 +108,12 @@ public class Product {
 		this.condition = condition;
 	}
 
-	public MultipartFile getProductImage(){
+	public MultipartFile getProductImage() {
 		return productImage;
 	}
 
-	public void setProductImage(MultipartFile productImage){
-		this.productImage=productImage;
+	public void setProductImage(MultipartFile productImage) {
+		this.productImage = productImage;
 	}
 
 	@Override
@@ -152,3 +152,5 @@ public class Product {
 		return "Produkt [productId=" + productId + ", nazwa=" + name + "]";
 	}
 }
+
+
